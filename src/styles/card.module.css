@@ -1,0 +1,44 @@
+
+.cardWrapper{
+    width: 80vw;
+    overflow: hidden;
+    margin: auto;
+    background: azure;
+    /* list-style: none; */
+    padding: 15px;
+    background: #b6dede;
+    margin-bottom: 10px;
+    border-radius: 1rem;
+    box-shadow: #d600ff 3px 4px 5px -1px;
+}
+.cardImg{
+    height:200px;
+    width: 300px;
+    border-radius: 1rem;
+}
+.title:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.cardLink{
+    display: flex;
+    color: black;
+    text-decoration: none;
+    justify-content: space-between;
+}
+.left{
+    height: 200px;
+    width: 300px;
+}
+.right{
+    text-align: center;
+    padding: 0px 10px;
+}
+
+.cardUl{
+    list-style: none;
+    /* background: #dfeded; */
+    opacity: 0.6;
+    padding: 10px;
+}

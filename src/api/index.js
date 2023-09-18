@@ -70,5 +70,5 @@ export const login = (email, password) => {
 };
 
 export const getUserInterest = () => {
-  return customFetch();
+  return customFetch(rootAPI.getUserInterestNews(), { method: "get" });
 };

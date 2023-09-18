@@ -1,0 +1,44 @@
+.navWrapper{
+    /* background-color: aquamarine; */
+    background: azure;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    height: 80px;
+    align-items: center;
+}
+
+.navHeading{
+    width: 20%;
+   padding: 0%;
+}
+
+.navHeading  img{
+    border-radius: 1rem;
+    height: 50px;
+    padding: 0%;
+    width: 100%;
+}
+.navUser {
+    display: flex;
+    /* width: 20%; */
+    
+}
+.logoutContainer button{
+    background-color: blueviolet;
+    /* height: 20%; */
+    padding: 5px;
+    color: aliceblue;
+    border-radius: 0.5rem;
+}
+
+.logContainer button{
+    background-color: blueviolet;
+    padding: 5px;
+    /* height: 20%; */
+    color: aliceblue;
+    margin-left: 5px;
+    border-radius: 0.5rem;
+}   

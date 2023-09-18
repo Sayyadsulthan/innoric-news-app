@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { signUp } from "../api";
 import { useAuth } from "../hooks";
 
 export default function SignUp() {

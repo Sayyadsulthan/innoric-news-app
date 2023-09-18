@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { signUp, login } from "../api";
 import { useAuth } from "../hooks";
 export default function Login() {
   const emailRef = useRef();
