@@ -1,10 +1,14 @@
 import { useState } from "react";
 import styled from "../styles/navbar.module.css";
 import { useAuth } from "../hooks";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const auth = useAuth();
 
+  const handleLogout = () => {
+    auth.logout();
+  };
   return (
     <>
       <div className={styled.navWrapper}>
@@ -18,12 +22,24 @@ export default function Navbar() {
         <div className={styled.navUser}>
           {auth.user ? (
             <div className={styled.logoutContainer}>
-              <button>Logout</button>
+              <button className={styled.NavBtn} onClick={handleLogout}>
+                <Link className={styled.NavLink} to="/logout">
+                  Logout
+                </Link>
+              </button>
             </div>
           ) : (
             <div className={styled.logContainer}>
-              <button>Login</button>
-              <button>SignUp</button>
+              <button className={styled.NavBtn}>
+                <Link className={styled.NavLink} to="/login">
+                  Login
+                </Link>
+              </button>
+              <button className={styled.NavBtn}>
+                <Link className={styled.NavLink} to="/signup">
+                  SignUp
+                </Link>
+              </button>
             </div>
           )}
         </div>

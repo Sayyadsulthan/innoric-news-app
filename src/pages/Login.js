@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
+import { Navigate } from "react-router-dom";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const auth = useAuth();
+
+  if (auth.user) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

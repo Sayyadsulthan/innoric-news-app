@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
+import { Navigate } from "react-router-dom";
 
 export default function SignUp() {
   const nameRef = useRef();
@@ -7,6 +8,10 @@ export default function SignUp() {
   const passwordRef = useRef();
   const confirmPassRef = useRef();
   const auth = useAuth();
+
+  if (auth.user) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,6 +1,5 @@
 .navWrapper{
-    /* background-color: aquamarine; */
-    background: azure;
+    background: #3c4848;
     color: black;
     display: flex;
     flex-direction: row;
@@ -8,11 +7,27 @@
     padding: 0;
     height: 80px;
     align-items: center;
+    
+}
+.NavLink{
+    color: whitesmoke;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: larger;
 }
 
 .navHeading{
     width: 20%;
    padding: 0%;
+}
+.NavBtn{
+    margin-right: 10px;
+    box-shadow: #517373 2px 2px;
+    /* padding: 15px; */
+}
+
+.NavBtn:hover{
+    font-size: medium;
 }
 
 .navHeading  img{

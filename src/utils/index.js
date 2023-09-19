@@ -14,6 +14,14 @@ export const setLocalStorageItem = (key, value) => {
   value = typeof value === "string" ? value : toString(value);
   return localStorage.setItem(key, value);
 };
+export const removeLocalStorageItem = (key) => {
+  if (!key) {
+    return false;
+  }
+  key = typeof key === "string" ? key : toString(key);
+  localStorage.removeItem(key);
+  return true;
+};
 
 export const getFormBody = (data) => {
   const formData = [];

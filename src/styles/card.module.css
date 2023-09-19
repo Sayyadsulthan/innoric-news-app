@@ -1,20 +1,35 @@
 
 .cardWrapper{
-    width: 80vw;
+    width: 70vw;
     overflow: hidden;
     margin: auto;
     background: azure;
     /* list-style: none; */
     padding: 15px;
-    background: #b6dede;
+    /* background: #b6dede; */
     margin-bottom: 10px;
     border-radius: 1rem;
-    box-shadow: #d600ff 3px 4px 5px -1px;
+    box-shadow: #8f8d8f 3px 4px 5px -1px;
 }
 .cardImg{
     height:200px;
     width: 300px;
     border-radius: 1rem;
+}
+.title{
+    font-size: large;
+    font-style: revert;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.SrcDate{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Bottom{
+    width: 90%;
+    margin: auto;
 }
 .title:hover{
     color: blue;

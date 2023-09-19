@@ -49,7 +49,9 @@ const customFetch = async (uri, { body, ...customConfig }) => {
     console.log("error in customFetch : ", err);
     return {
       success: false,
-      message: err.message,
+      // message: err.message,
+      message: err.response.data.message,
+      status:err.response.status,
     };
   }
 };
@@ -69,6 +71,20 @@ export const login = (email, password) => {
   });
 };
 
-export const getUserInterest = () => {
+export const getUserInterestNews = () => {
   return customFetch(rootAPI.getUserInterestNews(), { method: "get" });
+};
+
+export const getNewsCategory = (query) => {
+  return customFetch(rootAPI.getNews(query), { method: "get" });
+};
+export const getFavouriteNews = () => {
+  return customFetch(rootAPI.getFavNews(), { method: "get" });
+};
+export const addToFavourite = (news) => {
+  return customFetch(rootAPI.addFavNews(), { method: "post", body: { news } });
+};
+
+export const removeFromFavourite = (newsId) => {
+  return customFetch(rootAPI.removeFavNews(newsId), { method: "delete" });
 };

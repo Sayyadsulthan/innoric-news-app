@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import { useAuth } from "../hooks";
+import Favourite from "../pages/Favourite";
 import Health from "../pages/Health";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/politics" Component={Politics} />
             <Route path="/health" Component={Health} />
             <Route path="/technology" Component={Technology} />
+            <Route path="/favourite" Component={Favourite} />
           </Route>
 
           <Route path="/signup" Component={SignUp} />

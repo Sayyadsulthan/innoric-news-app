@@ -5,7 +5,10 @@ const initialUserState = {
   user: null,
   login: () => {},
   signUp: () => {},
-  loading:true
+  logout: () => {},
+  getUserFavourite: () => {},
+  updateFavourite: () => {},
+  loading: true,
 };
 
 export const AuthContext = createContext(initialUserState);

@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+.homeWrapper{
+  padding-top: 5px;
+  padding-bottom: 10px;
+  min-height: 90vh;
+}

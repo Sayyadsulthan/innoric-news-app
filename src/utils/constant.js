@@ -5,8 +5,9 @@ export const rootAPI = {
   login: () => `${apiURI}/login`,
   signUp: () => `${apiURI}/signup`,
   getUserInterestNews: () => `${apiURI}/news/user-interest`,
-  updateUserInterest: () => `${apiURI}/news/user-interest`,
+  updateUserInterest: () => `${apiURI}/update-interest`,
   getNews: (query) => `${apiURI}/news/category?q=${query}`,
-  addFavNews: () => `${apiURI}/news/add-fav-news`,
-  removeFavNews: (newsId) => `${apiURI}/news/remove-fav-news?newsId=${newsId}`,
+  getFavNews: () => `${apiURI}/get-fav-news`,
+  addFavNews: () => `${apiURI}/add-fav-news`,
+  removeFavNews: (newsId) => `${apiURI}/remove-fav-news?newsId=${newsId}`,
 };

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "../styles/card.module.css";
+import { useAuth } from "../hooks";
+import { useEffect, useState } from "react";
+import { addToFavourite } from "../api";
 
 export default function Card({ article }) {
+  // console.log(article)
   const {
     source,
     title,
@@ -11,13 +15,40 @@ export default function Card({ article }) {
     content,
     author,
     publishedAt,
+    id,
   } = article;
+  const auth = useAuth();
+  const date = publishedAt ? new Date(publishedAt) : null;
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [newsId, setNewsId] = useState("");
+  useEffect(() => {
+    auth.user.favourite.map((fav) => {
+      const res = compareObject(fav, article);
+      if (res) {
+        setNewsId(fav._id);
+        setIsFavourite(true);
+      }
+    });
+    // console.log(auth.user.favourite.indexOf(article));
+  }, []);
 
-  let date =null;
-  if(publishedAt){
-    date = new Date(publishedAt)
+  const handleAddFavourite = async () => {
+    const news = article;
+    // const response = await addToFavourite(news);
+    // console.log(response);
+    await auth.updateFavourite(news, false);
+
+    setIsFavourite(true);
+  };
+
+  const handleRemoveFromFav = async () => {
+    console.log(newsId);
+    auth.updateFavourite(false, newsId);
+  };
+  if (auth.loading) {
+    return <h1>Please Wait...</h1>;
   }
-  console.log(date)
+
   return (
     <div className={styled.cardWrapper}>
       <Link to={url} className={styled.cardLink}>
@@ -28,7 +59,7 @@ export default function Card({ article }) {
           <div className="Top">
             <span className={styled.title}>title: {title}</span>
           </div>
-          <div className="Bottom">
+          <div className={styled.Bottom}>
             <ul className={styled.cardUl}>
               {description ? (
                 <li>
@@ -45,59 +76,49 @@ export default function Card({ article }) {
               )}
 
               {source && (
-                <li>
+                <li className={styled.SrcDate}>
                   <strong>Source : {source.name}</strong>
-                  {
-                    publishedAt &&
-                  <strong>{`${date.getDate()+1}-${date.getMonth()+1}-${date.getFullYear()}`}</strong>
-                  }
+                  {publishedAt && (
+                    <strong>{`${date.getDate() + 1}-${
+                      date.getMonth() + 1
+                    }-${date.getFullYear()}`}</strong>
+                  )}
                 </li>
               )}
             </ul>
           </div>
         </div>
       </Link>
+      <div className="favContainer">
+        <button
+          onClick={isFavourite ? handleRemoveFromFav : handleAddFavourite}
+        >
+          {isFavourite ? "un-favourite" : "favourite"}{" "}
+        </button>
+      </div>
     </div>
   );
 }
 
-//
-/*
-<div className={styled.cardWrapper}>
-      <Link to={url} className={styled.cardLink}>
-        <div className="Center">
-          <img className={styled.cardImg} src={urlToImage} alt="urlToImage" />
-        </div>
-        <div>
-          <div className="Top">
-            <span>title: {title}</span>
-          </div>
-          <div className="Bottom">
-            <ul className={styled.cardUl}>
-              <li>
-                <strong>Description : </strong>
-                <p>{description}</p>
-              </li>
-              {content && (
-                <li>
-                  <strong>Content : </strong>
-                  <p>{content}</p>
-                </li>
-              )}
-              {author && (
-                <li>
-                  <strong>Author : {author}</strong>
-                </li>
-              )}
-              {source && (
-                <li>
-                  <strong>Source : {source.name}</strong>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-      </Link>
-    </div>
+const compareObject = (obj1, obj2) => {
+  const data1 = {
+    author: obj1.data.author,
+    content: obj1.data.content,
+    description: obj1.data.description,
+    publishedAt: obj1.data.publishedAt,
+    title: obj1.data.title,
+    url: obj1.data.url,
+    urlToImage: obj1.data.urlToImage,
+  };
+  const data2 = {
+    author: obj2.author || undefined,
+    content: obj2.content || undefined,
+    description: obj2.description || undefined,
+    publishedAt: obj2.publishedAt || undefined,
+    title: obj2.title || undefined,
+    url: obj2.url || undefined,
+    urlToImage: obj2.urlToImage || undefined,
+  };
 
-    */
+  return JSON.stringify(data1) == JSON.stringify(data2);
+};
