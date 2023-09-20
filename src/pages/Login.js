@@ -2,6 +2,9 @@ import { useRef } from "react";
 import { useAuth } from "../hooks";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import styled from "../styles/loginSignup.module.css";
+
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -24,36 +27,40 @@ export default function Login() {
     } else {
       toast.error(data.message);
     }
-
   };
 
   return (
     <>
-      <div>
-        <h2>Login Form</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="inputContainer">
-            <label htmlFor="email"> email</label>
-            <input
-              id="email"
-              ref={emailRef}
-              placeholder="Enter email here"
-              required
-            />
-          </div>
-          <div className="inputContainer">
-            <label htmlFor="password"> password </label>
-            <input
-              id="password"
-              ref={passwordRef}
-              placeholder="Password *******"
-              required
-            />
-          </div>
-          <div>
-            <button> Login </button>
-          </div>
-        </form>
+      <div className={styled.signupWrapper}>
+        <div className={styled.signupContainer}>
+          <div className={styled.Title}>Login Form</div>
+          <form className={styled.formContainer} onSubmit={handleSubmit}>
+            <div className={styled.InputWrapper}>
+              <div className={styled.inputContainer}>
+                <label htmlFor="email"> email</label>
+                <input
+                  id="email"
+                  ref={emailRef}
+                  placeholder="Enter email here"
+                  required
+                />
+              </div>
+              <div className={styled.inputContainer}>
+                <label htmlFor="password"> password </label>
+                <input
+                  id="password"
+                  ref={passwordRef}
+                  placeholder="Password *******"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={styled.submitBtnContainer}>
+              <button className={styled.submitBtn}> SignUp </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

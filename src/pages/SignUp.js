@@ -3,6 +3,8 @@ import { useAuth } from "../hooks";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import styled from "../styles/loginSignup.module.css";
+
 export default function SignUp() {
   const nameRef = useRef();
   const emailRef = useRef();
@@ -40,52 +42,57 @@ export default function SignUp() {
   };
   return (
     <>
-      <div>
-        <h2>SignUp Form</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="inputContainer">
-            <label htmlFor="name"> name</label>
-            <input
-              id="name"
-              ref={nameRef}
-              placeholder="name email here"
-              required
-            />
-          </div>
-          <div className="inputContainer">
-            <label htmlFor="email"> email</label>
-            <input
-              id="email"
-              ref={emailRef}
-              type="email"
-              placeholder="Enter email here"
-              required
-            />
-          </div>
-          <div className="inputContainer">
-            <label htmlFor="password"> password </label>
-            <input
-              id="password"
-              ref={passwordRef}
-              type="password"
-              placeholder=" *******"
-              required
-            />
-          </div>
-          <div className="inputContainer">
-            <label htmlFor="confirm-password"> Confirm password </label>
-            <input
-              id="confirm-password"
-              ref={confirmPassRef}
-              type="password"
-              placeholder=" *******"
-              required
-            />
-          </div>
-          <div>
-            <button> SignUp </button>
-          </div>
-        </form>
+      <div className={styled.signupWrapper}>
+        <div className={styled.signupContainer}>
+          <div className={styled.Title}>Registration </div >
+          <form className={styled.formContainer} onSubmit={handleSubmit}>
+            <div className={styled.InputWrapper}>
+              <div className={styled.inputContainer}>
+                <label htmlFor="name"> name</label>
+                <input
+                  id="name"
+                  ref={nameRef}
+                  placeholder="abc"
+                  required
+                />
+              </div>
+              <div className={styled.inputContainer}>
+                <label htmlFor="email"> email</label>
+                <input
+                  id="email"
+                  ref={emailRef}
+                  type="email"
+                  placeholder="xyz@gmail.com"
+                  required
+                />
+              </div>
+              <div className={styled.inputContainer}>
+                <label htmlFor="password"> password </label>
+                <input
+                  id="password"
+                  ref={passwordRef}
+                  type="password"
+                  placeholder=" *******"
+                  required
+                />
+              </div>
+              <div className={styled.inputContainer}>
+                <label htmlFor="confirm-password"> Confirm password </label>
+                <input
+                  id="confirm-password"
+                  ref={confirmPassRef}
+                  type="password"
+                  placeholder=" *******"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={styled.submitBtnContainer}>
+              <button className={styled.submitBtn}> SignUp </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -1,0 +1,71 @@
+.signupWrapper{
+
+    background-color: rgb(233, 236, 239);
+    height: 100vh;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.signupContainer{
+    margin-top: 2rem;
+}
+.Title{
+    font-size: xx-large;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-shadow: rgba(198, 130, 116, 0.87) 1px 1px ;
+}
+
+.formContainer{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: grid;
+    gap: 1rem;
+    width: 550px;
+}
+.inputContainer{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+    color:rgb(34 161 161 / 96%);
+    font-weight: 700;
+    text-shadow: black 0.7px 0.8px;
+    text-transform: capitalize;
+    height: 100px;
+}
+.inputContainer input{
+    /* border: 2px solid; */
+    font-size: larger;
+    border:  none;
+    border-right:2px solid;
+    border-bottom: 2px solid;
+    border-left: 2px solid rgb(185, 143, 102);
+    border-top: 2px solid rgb(185, 143, 102);
+    border-radius: 0.3rem;
+}
+
+.submitBtnContainer{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.submitBtn{
+    width: 250px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out 0s;
+    outline: none;
+    background-image: linear-gradient(to right, rgb(37, 170, 225), rgb(68, 129, 235), rgb(4, 190, 254), rgb(63, 134, 237));
+    box-shadow: rgba(65, 132, 234, 0.75) 0px 4px 15px 0px;
+    text-transform: uppercase;
+}

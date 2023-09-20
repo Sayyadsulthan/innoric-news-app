@@ -5,18 +5,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Card({ article }) {
-  // console.log(article)
-  const {
-    source,
-    title,
-    description,
-    url,
-    urlToImage,
-    content,
-    author,
-    publishedAt,
-    id,
-  } = article;
+  const { source, title, description, url, urlToImage, content, publishedAt } =
+    article;
   const auth = useAuth();
   const date = publishedAt ? new Date(publishedAt) : null;
   const [isFavourite, setIsFavourite] = useState(false);
@@ -29,6 +19,7 @@ export default function Card({ article }) {
         setNewsId(fav._id);
         setIsFavourite(true);
       }
+      // return;
     });
   }, []);
 
@@ -101,6 +92,7 @@ export default function Card({ article }) {
               ? "https://cdn-icons-png.flaticon.com/128/306/306795.png"
               : "https://cdn-icons-png.flaticon.com/128/125/125327.png"
           }
+          alt="favImage"
         />
       </div>
     </div>
@@ -127,5 +119,5 @@ const compareObject = (obj1, obj2) => {
     urlToImage: obj2.urlToImage || undefined,
   };
 
-  return JSON.stringify(data1) == JSON.stringify(data2);
+  return JSON.stringify(data1) === JSON.stringify(data2);
 };

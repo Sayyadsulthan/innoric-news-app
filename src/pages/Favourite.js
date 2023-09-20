@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Category from "../components/Category";
 import Card from "../components/Card";
-import { getFavouriteNews } from "../api";
 import { useAuth } from "../hooks";
 
 export default function Favourite() {

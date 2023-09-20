@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "../styles/category.module.css";
 
-export default function ({
+export default function Category ({
   home,
   sports,
   politics,

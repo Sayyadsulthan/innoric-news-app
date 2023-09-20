@@ -1,4 +1,4 @@
-import { getFormBody, getLocalStorageItem } from "../utils";
+import { getLocalStorageItem } from "../utils";
 import { LOCALSTORGE_TOKEN_KEY, rootAPI } from "../utils/constant";
 import axios from "axios";
 
@@ -12,18 +12,6 @@ const customFetch = async (uri, { body, ...customConfig }) => {
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-
-  //   const config = {
-  //     ...customConfig,
-  //     headers: {
-  //       ...headers,
-  //       ...customConfig.headers,
-  //     },
-  //   };
-
-  //   if (body) {
-  //     config.body = getFormBody(body);
-  //   }
 
   try {
     const data = { ...body };
@@ -45,11 +33,17 @@ const customFetch = async (uri, { body, ...customConfig }) => {
     }
   } catch (err) {
     // console.log("error in customFetch : ", err);
+    const message =
+      err.response && err.response.data && err.response.data.message
+        ? err.response.data.message
+        : err.message;
+    const status =
+      err.response && err.response.status ? err.response.status : 503;
     return {
       success: false,
       // message: err.message,
-      message: err.response.data.message,
-      status: err.response.status,
+      message: message,
+      status: status,
     };
   }
 };
@@ -62,7 +56,6 @@ export const signUp = (name, email, password, confirm_password) => {
 };
 
 export const login = (email, password) => {
-  console.log("login custom: ", email, password);
   return customFetch(rootAPI.login(), {
     method: "post",
     body: { email, password },

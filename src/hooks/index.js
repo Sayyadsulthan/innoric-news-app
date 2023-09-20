@@ -35,7 +35,7 @@ export const useProvideAuth = () => {
         if (favNews && favNews.success) {
           data.favourite = favNews.data;
         }
-        // console.log("user decode : ", data);
+
         if (data) {
           await setUser(data);
         }
@@ -103,7 +103,7 @@ export const useProvideAuth = () => {
       const response = await addToFavourite(news);
       if (response && response.success) {
         const favNews = await getFavouriteNews();
-        // console.log("updated fav : ", favNews);
+
         if (favNews && favNews.success) {
           await setUser({ ...user, favourite: favNews.data });
           setLoading(false);
@@ -113,13 +113,12 @@ export const useProvideAuth = () => {
           };
         }
       }
-      // console.log("response false : ", response);
     }
-    // console.log("newsId: ", newsId);
+
     if (newsId) {
       await removeFromFavourite(newsId);
       const favNews = await getFavouriteNews();
-      // console.log("updated fav : ", favNews);
+
       if (favNews && favNews.success) {
         await setUser({ ...user, favourite: favNews.data });
         // setLoading(false);
@@ -140,7 +139,7 @@ export const useProvideAuth = () => {
 
   const updateInterest = async (interest) => {
     const response = await updateUserInterest(interest);
-    console.log("response: ", response);
+
     if (response.success) {
       return {
         success: true,
