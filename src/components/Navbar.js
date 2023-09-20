@@ -2,9 +2,12 @@ import { useState } from "react";
 import styled from "../styles/navbar.module.css";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
+import Interest from "./Interest";
 
 export default function Navbar() {
   const auth = useAuth();
+
+  const [isSettingVisible, setIsSettingVisible] = useState(false);
 
   const handleLogout = () => {
     auth.logout();
@@ -21,13 +24,26 @@ export default function Navbar() {
         </div>
         <div className={styled.navUser}>
           {auth.user ? (
-            <div className={styled.logoutContainer}>
-              <button className={styled.NavBtn} onClick={handleLogout}>
-                <Link className={styled.NavLink} to="/logout">
-                  Logout
-                </Link>
-              </button>
-            </div>
+            <>
+              <div className={styled.Setting}>
+                <img
+                  onClick={() => setIsSettingVisible(!isSettingVisible)}
+                  src="https://cdn-icons-png.flaticon.com/128/10024/10024002.png"
+                  alt="setting"
+                />{" "}
+                {
+                  isSettingVisible&& 
+                  <Interest />
+                }
+              </div>
+              <div className={styled.logoutContainer}>
+                <button className={styled.NavBtn} onClick={handleLogout}>
+                  <Link className={styled.NavLink} to="/logout">
+                    Logout
+                  </Link>
+                </button>
+              </div>
+            </>
           ) : (
             <div className={styled.logContainer}>
               <button className={styled.NavBtn}>

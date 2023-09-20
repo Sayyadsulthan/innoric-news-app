@@ -13,6 +13,7 @@ import {
   getFavouriteNews,
   addToFavourite,
   removeFromFavourite,
+  updateUserInterest,
 } from "../api/index";
 import jwtDecode from "jwt-decode";
 
@@ -34,7 +35,7 @@ export const useProvideAuth = () => {
         if (favNews && favNews.success) {
           data.favourite = favNews.data;
         }
-        console.log("user decode : ", data);
+        // console.log("user decode : ", data);
         if (data) {
           await setUser(data);
         }
@@ -61,7 +62,7 @@ export const useProvideAuth = () => {
   const signUp = async (name, email, password, confirm_password) => {
     setLoading(true);
     const data = await register(name, email, password, confirm_password);
-    console.log("user login hook :", data);
+    // console.log("user login hook :", data);
     setLoading(false);
   };
 
@@ -74,23 +75,15 @@ export const useProvideAuth = () => {
 
   const getUserFavourite = async () => {
     return user && user.favourite ? user.favourite : [];
-    // setLoading(true);
-    // const favNews = await getFavouriteNews();
-    // if (favNews && favNews.success) {
-    //   await setUser({ ...user, favourite: favNews.data });
-    // }
-
-    // setLoading(false);
-    // return user.favourite;
   };
 
   const updateFavourite = async (news, newsId) => {
-    setLoading(true);
+    // setLoading(true);
     if (news) {
       const response = await addToFavourite(news);
       if (response && response.success) {
         const favNews = await getFavouriteNews();
-        console.log("updated fav : ", favNews);
+        // console.log("updated fav : ", favNews);
         if (favNews && favNews.success) {
           await setUser({ ...user, favourite: favNews.data });
           setLoading(false);
@@ -100,16 +93,16 @@ export const useProvideAuth = () => {
           };
         }
       }
-      console.log("response false : ", response);
+      // console.log("response false : ", response);
     }
-    console.log("newsId: ", newsId);
+    // console.log("newsId: ", newsId);
     if (newsId) {
       await removeFromFavourite(newsId);
       const favNews = await getFavouriteNews();
-      console.log("updated fav : ", favNews);
+      // console.log("updated fav : ", favNews);
       if (favNews && favNews.success) {
         await setUser({ ...user, favourite: favNews.data });
-        setLoading(false);
+        // setLoading(false);
 
         return {
           success: true,
@@ -118,10 +111,26 @@ export const useProvideAuth = () => {
       }
     }
 
-    setLoading(false);
+    // setLoading(false);
     return {
       success: false,
       message: "Please Try after 5 minutes",
+    };
+  };
+
+  const updateInterest = async (interest) => {
+    const response = await updateUserInterest(interest);
+    console.log("response: ", response);
+    if (response.success) {
+      return {
+        success: true,
+        message: response.message,
+      };
+    }
+
+    return {
+      success: false,
+      message: response.message,
     };
   };
 
@@ -133,5 +142,6 @@ export const useProvideAuth = () => {
     logout,
     getUserFavourite,
     updateFavourite,
+    updateInterest,
   };
 };

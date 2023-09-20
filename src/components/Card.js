@@ -21,6 +21,7 @@ export default function Card({ article }) {
   const date = publishedAt ? new Date(publishedAt) : null;
   const [isFavourite, setIsFavourite] = useState(false);
   const [newsId, setNewsId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     auth.user.favourite.map((fav) => {
       const res = compareObject(fav, article);
@@ -33,19 +34,24 @@ export default function Card({ article }) {
   }, []);
 
   const handleAddFavourite = async () => {
+    setIsLoading(true);
     const news = article;
     // const response = await addToFavourite(news);
     // console.log(response);
     await auth.updateFavourite(news, false);
 
     setIsFavourite(true);
+    setIsLoading(false);
   };
 
   const handleRemoveFromFav = async () => {
+    setIsLoading(true);
     console.log(newsId);
-    auth.updateFavourite(false, newsId);
+    await auth.updateFavourite(false, newsId);
+    setIsFavourite(false);
+    setIsLoading(false);
   };
-  if (auth.loading) {
+  if (isLoading) {
     return <h1>Please Wait...</h1>;
   }
 
@@ -89,12 +95,20 @@ export default function Card({ article }) {
           </div>
         </div>
       </Link>
-      <div className="favContainer">
-        <button
+      <div className={styled.favContainer}>
+        {/* <button
           onClick={isFavourite ? handleRemoveFromFav : handleAddFavourite}
         >
           {isFavourite ? "un-favourite" : "favourite"}{" "}
-        </button>
+        </button> */}
+        <img
+          onClick={isFavourite ? handleRemoveFromFav : handleAddFavourite}
+          src={
+            isFavourite
+              ? "https://cdn-icons-png.flaticon.com/128/306/306795.png"
+              : "https://cdn-icons-png.flaticon.com/128/125/125327.png"
+          }
+        />
       </div>
     </div>
   );

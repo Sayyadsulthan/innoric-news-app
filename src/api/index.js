@@ -51,7 +51,7 @@ const customFetch = async (uri, { body, ...customConfig }) => {
       success: false,
       // message: err.message,
       message: err.response.data.message,
-      status:err.response.status,
+      status: err.response.status,
     };
   }
 };
@@ -73,6 +73,12 @@ export const login = (email, password) => {
 
 export const getUserInterestNews = () => {
   return customFetch(rootAPI.getUserInterestNews(), { method: "get" });
+};
+export const updateUserInterest = (interest) => {
+  return customFetch(rootAPI.updateUserInterest(), {
+    method: "patch",
+    body: { interest },
+  });
 };
 
 export const getNewsCategory = (query) => {

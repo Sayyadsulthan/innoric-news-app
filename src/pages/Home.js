@@ -34,15 +34,20 @@ export default function Home() {
         "https://assets.aws.worldathletics.org/large/6507e1ca876b977bbcdd8fd5.jpg",
     },
   ]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // const getNews = async () => {
-    //   const data = await getUserInterestNews();
-    //   if (data && data.data) {
-    //     setNews(data.data.articles);
-    //     console.log("Home page", data.data.articles);
-    //   }
-    // };
-    // getNews();
+    const getNews = async () => {
+      setLoading(true);
+      const data = await getUserInterestNews();
+      if (data && data.data) {
+        setNews(data.data.articles);
+        console.log("Home res", data);
+        console.log("Home page", data.data.articles);
+      }
+      setLoading(false);
+    };
+    getNews();
   }, []);
   // const handleGetNews=async()=>{
   //     const data = await getUserInterest();
@@ -52,9 +57,13 @@ export default function Home() {
     <>
       <div className="homeWrapper">
         <Category home={true} />
-        {news.map((article, i) => (
-          <Card article={article} key={i}/>
-        ))}
+        {loading ? (
+          <h1>Please Wait.....</h1>
+        ) : news.length < 1 ? (
+          <h1>Please Refresh Once!</h1>
+        ) : (
+          news.map((article, i) => <Card article={article} key={i} />)
+        )}
         {/* // console.log(artilce) */}
       </div>
     </>

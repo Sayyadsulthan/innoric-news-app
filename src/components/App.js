@@ -48,6 +48,7 @@ function App() {
             <Route path="/health" Component={Health} />
             <Route path="/technology" Component={Technology} />
             <Route path="/favourite" Component={Favourite} />
+            <Route path="*" Component={Home} />
           </Route>
 
           <Route path="/signup" Component={SignUp} />
@@ -55,6 +56,7 @@ function App() {
           {/* <Route path="/sports" element={<ProtectedRoutes />}>
             <Route  path="/sports" Component={Home} />
           </Route> */}
+          <Route path="*" Component={Home} />
         </Routes>
       </Router>
     </div>

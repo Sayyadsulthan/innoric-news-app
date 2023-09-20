@@ -8,6 +8,7 @@ const initialUserState = {
   logout: () => {},
   getUserFavourite: () => {},
   updateFavourite: () => {},
+  updateInterest: () => {},
   loading: true,
 };
 
