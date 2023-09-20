@@ -1,5 +1,22 @@
 # Getting Started with Create React App
 
+#hosted url
+https://650abe8d18794a2e4756cd0f--news-hub-sayyad.netlify.app/
+
+# hosted API url:
+https://sayyad-news-api.onrender.com
+
+# backend Repo Link :
+https://github.com/Sayyadsulthan/news-API
+
+# SET FOT INSTALL AND RUN
+1) use npm i / npm install
+2) npm start
+# You can enjoy the app 
+# Thankyou for see and read the readme file
+
+# some screenshots:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
