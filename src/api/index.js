@@ -26,17 +26,15 @@ const customFetch = async (uri, { body, ...customConfig }) => {
   //   }
 
   try {
-    // console.log(customConfig.method);
-    // console.log(uri);
     const data = { ...body };
-    console.log(data);
+
     const response = await axios({
       url: uri,
       method: customConfig.method,
       data: { ...body },
       headers,
     });
-    console.log(await response.data);
+
     if (response) {
       return {
         success: true,
@@ -46,7 +44,7 @@ const customFetch = async (uri, { body, ...customConfig }) => {
       throw new Error(data.message);
     }
   } catch (err) {
-    console.log("error in customFetch : ", err);
+    // console.log("error in customFetch : ", err);
     return {
       success: false,
       // message: err.message,

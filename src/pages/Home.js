@@ -42,17 +42,12 @@ export default function Home() {
       const data = await getUserInterestNews();
       if (data && data.data) {
         setNews(data.data.articles);
-        console.log("Home res", data);
-        console.log("Home page", data.data.articles);
       }
       setLoading(false);
     };
     getNews();
   }, []);
-  // const handleGetNews=async()=>{
-  //     const data = await getUserInterest();
-  //     console.log(data);
-  // }
+
   return (
     <>
       <div className="homeWrapper">
@@ -64,15 +59,7 @@ export default function Home() {
         ) : (
           news.map((article, i) => <Card article={article} key={i} />)
         )}
-        {/* // console.log(artilce) */}
       </div>
     </>
   );
 }
-
-/*
-description
-id 
-name
-url
-*/

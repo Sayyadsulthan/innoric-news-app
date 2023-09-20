@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "../styles/card.module.css";
 import { useAuth } from "../hooks";
 import { useEffect, useState } from "react";
-import { addToFavourite } from "../api";
+import { toast } from "react-toastify";
 
 export default function Card({ article }) {
   // console.log(article)
@@ -30,16 +30,14 @@ export default function Card({ article }) {
         setIsFavourite(true);
       }
     });
-    // console.log(auth.user.favourite.indexOf(article));
   }, []);
 
   const handleAddFavourite = async () => {
     setIsLoading(true);
     const news = article;
-    // const response = await addToFavourite(news);
-    // console.log(response);
-    await auth.updateFavourite(news, false);
 
+    await auth.updateFavourite(news, false);
+    toast.success("News Added to Favourite");
     setIsFavourite(true);
     setIsLoading(false);
   };
@@ -49,6 +47,7 @@ export default function Card({ article }) {
     console.log(newsId);
     await auth.updateFavourite(false, newsId);
     setIsFavourite(false);
+    toast.success("News removed from Favourite");
     setIsLoading(false);
   };
   if (isLoading) {
@@ -69,7 +68,6 @@ export default function Card({ article }) {
             <ul className={styled.cardUl}>
               {description ? (
                 <li>
-                  {/* <strong>Description : </strong> */}
                   <p>{description}</p>
                 </li>
               ) : content ? (
@@ -96,11 +94,6 @@ export default function Card({ article }) {
         </div>
       </Link>
       <div className={styled.favContainer}>
-        {/* <button
-          onClick={isFavourite ? handleRemoveFromFav : handleAddFavourite}
-        >
-          {isFavourite ? "un-favourite" : "favourite"}{" "}
-        </button> */}
         <img
           onClick={isFavourite ? handleRemoveFromFav : handleAddFavourite}
           src={

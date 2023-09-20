@@ -32,7 +32,7 @@
 }
 
 .navHeading  img{
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     height: 50px;
     padding: 0%;
     width: 100%;
@@ -73,6 +73,9 @@
     padding: 3px ;
     /* padding-bottom: 3px; */
     border-bottom: 1px solid;
+}
+.Item span:hover{
+    cursor: pointer;
 }
 
 .logoutContainer button{

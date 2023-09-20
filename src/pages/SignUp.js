@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const nameRef = useRef();
@@ -8,25 +9,34 @@ export default function SignUp() {
   const passwordRef = useRef();
   const confirmPassRef = useRef();
   const auth = useAuth();
+  const history = useNavigate();
 
   if (auth.user) {
     return <Navigate to="/" />;
   }
-
-  const handleSubmit = (e) => {
+  function handleClearInputs() {
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+    confirmPassRef.current.value = "";
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirm_password = confirmPassRef.current.value;
 
-    auth.signUp(name, email, password, confirm_password);
-
     // for empty inputs
-    nameRef.current.value = "";
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
-    confirmPassRef.current.value = "";
+    handleClearInputs();
+
+    const data = await auth.signUp(name, email, password, confirm_password);
+    if (data.success) {
+      toast.success(data.message);
+      return history("/login");
+    } else {
+      toast.error(data.message);
+    }
   };
   return (
     <>

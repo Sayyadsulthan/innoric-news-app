@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -10,20 +11,20 @@ export default function Login() {
     return <Navigate to="/" />;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    auth.login(email, password);
-    // login(email, password);
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+    const data = await auth.login(email, password);
+    if (data.success) {
+      toast.success(data.message);
+    } else {
+      toast.error(data.message);
+    }
 
-    // for empty inputs
-
-    // emailRef.current.value = "";
-    // passwordRef.current.value = "";
   };
 
   return (

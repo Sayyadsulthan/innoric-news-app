@@ -50,20 +50,40 @@ export const useProvideAuth = () => {
     setLoading(true);
     const data = await userLogin(email, password);
     if (data.success) {
-      //   console.log("user login hook :", data);
       setLocalStorageItem(LOCALSTORGE_TOKEN_KEY, data.data.token);
       const user = await jwtDecode(data.data.token);
       setUser(user);
-      //   console.log("user login hook decode :", user);
+      setLoading(false);
+      return {
+        success: true,
+        message: "Login Successfull",
+      };
     }
     setLoading(false);
+    return {
+      success: false,
+      message: data.message,
+    };
   };
 
   const signUp = async (name, email, password, confirm_password) => {
     setLoading(true);
     const data = await register(name, email, password, confirm_password);
-    // console.log("user login hook :", data);
+    let sendData = {};
+    if (data.success) {
+      sendData = {
+        success: true,
+        message: "Account Created successfull",
+      };
+    } else {
+      sendData = {
+        success: false,
+        message: data.message,
+      };
+    }
+
     setLoading(false);
+    return sendData;
   };
 
   const logout = () => {

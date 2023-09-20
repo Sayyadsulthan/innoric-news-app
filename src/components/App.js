@@ -21,7 +21,7 @@ import {
 const ProtectedRoutes = ({ childrens, ...rest }) => {
   const auth = useAuth();
   // if the user authenticated go to that desired routes
-  console.log(auth.user);
+
   if (auth.user) {
     return <Outlet />;
   }
@@ -31,34 +31,37 @@ const ProtectedRoutes = ({ childrens, ...rest }) => {
 function App() {
   const auth = useAuth();
 
-  if (auth.loading) {
-    return <h1>Loading....</h1>;
-  }
+  // if (auth.loading) {
+  //   return <h1 >Loading....</h1>;
+  // }
 
   return (
     <div className="App">
-      {/* <h1>App</h1> */}
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<ProtectedRoutes />}>
-            <Route path="/" Component={Home} />
-            <Route path="/sports" Component={Sports} />
-            <Route path="/politics" Component={Politics} />
-            <Route path="/health" Component={Health} />
-            <Route path="/technology" Component={Technology} />
-            <Route path="/favourite" Component={Favourite} />
-            <Route path="*" Component={Home} />
-          </Route>
+      {auth.loading ? (
+        <h1>Loading....</h1>
+      ) : (
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<ProtectedRoutes />}>
+              <Route path="/" Component={Home} />
+              <Route path="/sports" Component={Sports} />
+              <Route path="/politics" Component={Politics} />
+              <Route path="/health" Component={Health} />
+              <Route path="/technology" Component={Technology} />
+              <Route path="/favourite" Component={Favourite} />
+              <Route path="*" Component={Home} />
+            </Route>
 
-          <Route path="/signup" Component={SignUp} />
-          <Route path="/login" Component={Login} />
-          {/* <Route path="/sports" element={<ProtectedRoutes />}>
+            <Route path="/signup" Component={SignUp} />
+            <Route path="/login" Component={Login} />
+            {/* <Route path="/sports" element={<ProtectedRoutes />}>
             <Route  path="/sports" Component={Home} />
           </Route> */}
-          <Route path="*" Component={Home} />
-        </Routes>
-      </Router>
+            <Route path="*" Component={Home} />
+          </Routes>
+        </Router>
+      )}
     </div>
   );
 }

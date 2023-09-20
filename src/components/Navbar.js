@@ -3,14 +3,16 @@ import styled from "../styles/navbar.module.css";
 import { useAuth } from "../hooks";
 import { Link } from "react-router-dom";
 import Interest from "./Interest";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const auth = useAuth();
 
   const [isSettingVisible, setIsSettingVisible] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     auth.logout();
+    toast.success("Successfully Logged out");
   };
   return (
     <>
@@ -31,10 +33,7 @@ export default function Navbar() {
                   src="https://cdn-icons-png.flaticon.com/128/10024/10024002.png"
                   alt="setting"
                 />{" "}
-                {
-                  isSettingVisible&& 
-                  <Interest />
-                }
+                {isSettingVisible && <Interest />}
               </div>
               <div className={styled.logoutContainer}>
                 <button className={styled.NavBtn} onClick={handleLogout}>
