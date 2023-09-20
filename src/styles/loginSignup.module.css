@@ -24,7 +24,7 @@
     gap: 1rem;
     width: 550px;
 }
-.inputContainer{
+.inputContainer, .formFooter{
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -68,4 +68,29 @@
     background-image: linear-gradient(to right, rgb(37, 170, 225), rgb(68, 129, 235), rgb(4, 190, 254), rgb(63, 134, 237));
     box-shadow: rgba(65, 132, 234, 0.75) 0px 4px 15px 0px;
     text-transform: uppercase;
+}
+
+.formFooter{
+display: block;
+margin: auto;
+text-transform: none;
+}
+.Link {
+    color: white;
+}
+.Link button{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out 0s;
+    outline: none;
+    background-image: linear-gradient(to right, rgb(37, 170, 225), rgb(68, 129, 235), rgb(4, 190, 254), rgb(63, 134, 237));
+    box-shadow: rgba(65, 132, 234, 0.75) 0px 4px 15px 0px;
+    text-transform: none;
 }

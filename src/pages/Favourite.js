@@ -10,11 +10,6 @@ export default function Favourite() {
   useEffect(() => {
     const getNews = async () => {
       setLoading(true);
-      //   const data = await getFavouriteNews();
-      //   if (data && data.data) {
-      //     console.log("Home page", data);
-      //     setNews(data.data);
-      //   }
       if (auth.user) {
         setNews(auth.user.favourite);
       }
@@ -36,7 +31,7 @@ export default function Favourite() {
       ) : news.length < 1 ? (
         <h1>Nothing in fav Section</h1>
       ) : (
-        news.map((article, i) => <Card article={article.data} key={i}/>)
+        news.map((article, i) => <Card article={article.data} key={i} />)
       )}
     </>
   );

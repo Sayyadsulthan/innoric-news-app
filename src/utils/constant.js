@@ -1,4 +1,4 @@
-const apiURI = "http://127.0.0.1:8000/api/user";
+const apiURI = "https://sayyad-news-api.onrender.com/api/user";
 export const LOCALSTORGE_TOKEN_KEY = "newsHub";
 
 export const rootAPI = {

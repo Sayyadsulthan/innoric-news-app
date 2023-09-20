@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import styled from "../styles/loginSignup.module.css";
@@ -44,17 +44,12 @@ export default function SignUp() {
     <>
       <div className={styled.signupWrapper}>
         <div className={styled.signupContainer}>
-          <div className={styled.Title}>Registration </div >
+          <div className={styled.Title}>Registration </div>
           <form className={styled.formContainer} onSubmit={handleSubmit}>
             <div className={styled.InputWrapper}>
               <div className={styled.inputContainer}>
                 <label htmlFor="name"> name</label>
-                <input
-                  id="name"
-                  ref={nameRef}
-                  placeholder="abc"
-                  required
-                />
+                <input id="name" ref={nameRef} placeholder="abc" required />
               </div>
               <div className={styled.inputContainer}>
                 <label htmlFor="email"> email</label>
@@ -90,6 +85,13 @@ export default function SignUp() {
 
             <div className={styled.submitBtnContainer}>
               <button className={styled.submitBtn}> SignUp </button>
+            </div>
+
+            <div className={styled.formFooter}>
+              <span>Already have an Account : </span>
+              <Link className={styled.Link} to="/login">
+                <button>Login</button>
+              </Link>
             </div>
           </form>
         </div>

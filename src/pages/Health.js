@@ -27,7 +27,7 @@ export default function Health() {
       ) : news.length < 1 ? (
         <h1>Please Refresh Once!</h1>
       ) : (
-        news.map((article) => <Card article={article} />)
+        news.map((article, i) => <Card article={article} key={i}/>)
       )}
     </>
   );

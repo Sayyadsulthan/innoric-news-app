@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useAuth } from "../hooks";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import styled from "../styles/loginSignup.module.css";
@@ -58,6 +58,13 @@ export default function Login() {
 
             <div className={styled.submitBtnContainer}>
               <button className={styled.submitBtn}> SignUp </button>
+            </div>
+
+            <div className={styled.formFooter}>
+              <span>Don't have an Account : </span>
+              <Link className={styled.Link} to="/signup">
+                <button>Register</button>
+              </Link>
             </div>
           </form>
         </div>

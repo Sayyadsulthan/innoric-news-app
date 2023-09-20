@@ -12,7 +12,6 @@ export default function Politics() {
       const data = await getNewsCategory("politics");
       if (data && data.data) {
         setNews(data.data.articles);
-        // console.log("Home page", data.data.articles);
       }
       setLoading(false);
     };
@@ -27,7 +26,7 @@ export default function Politics() {
       ) : news.length < 1 ? (
         <h1>Please Refresh Once!</h1>
       ) : (
-        news.map((article) => <Card article={article} />)
+        news.map((article, i) => <Card article={article} key={i} />)
       )}
     </>
   );
