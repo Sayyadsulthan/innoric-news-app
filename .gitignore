@@ -1,9 +1,29 @@
+#hosted url
+https://650abe8d18794a2e4756cd0f--news-hub-sayyad.netlify.app/
+
+# hosted API url:
+https://sayyad-news-api.onrender.com
+
+# backend Repo Link :
+https://github.com/Sayyadsulthan/news-API
+
+# SET FOT INSTALL AND RUN
+1) use npm i / npm install
+2) npm start
+# You can enjoy the app 
+# Thankyou for see and read the readme file
+
+# some screenshots:
+
+
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+/package-lock.json
 
 # testing
 /coverage
@@ -21,3 +41,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local Netlify folder
+.netlify
