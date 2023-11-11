@@ -35,7 +35,7 @@ export default function Card({ article }) {
 
   const handleRemoveFromFav = async () => {
     setIsLoading(true);
-    console.log(newsId);
+
     await auth.updateFavourite(false, newsId);
     setIsFavourite(false);
     toast.success("News removed from Favourite");

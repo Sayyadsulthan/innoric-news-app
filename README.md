@@ -3,6 +3,10 @@
 #hosted url
 https://650abe8d18794a2e4756cd0f--news-hub-sayyad.netlify.app/
 
+<!-- OR You can use  -->
+
+https://654fa07151f89646ac8cfa3c--news-hub-sayyad.netlify.app/
+
 # hosted API url:
 
 https://sayyad-news-api.onrender.com
