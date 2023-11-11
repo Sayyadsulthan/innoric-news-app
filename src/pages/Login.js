@@ -57,7 +57,7 @@ export default function Login() {
             </div>
 
             <div className={styled.submitBtnContainer}>
-              <button className={styled.submitBtn}> SignUp </button>
+              <button className={styled.submitBtn}> SignIn </button>
             </div>
 
             <div className={styled.formFooter}>
