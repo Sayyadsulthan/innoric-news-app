@@ -19,7 +19,7 @@ export default function Card({ article }) {
         setNewsId(fav._id);
         setIsFavourite(true);
       }
-      // return;
+      return fav;
     });
   }, []);
 
